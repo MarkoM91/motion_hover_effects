@@ -4,6 +4,11 @@ class EffectShell {
     this.itemsWrapper = itemsWrapper
     if (!this.container || !this.itemsWrapper) return
     this.setup()
+    this.initEffectShell().then(() => {
+      console.log('load finished');
+      this.isLoaded = true
+    })
+    this.createEventsListener();
   }
 
   setup() {
@@ -102,4 +107,57 @@ class EffectShell {
       )
     })
   }
+
+  createEventsListener() {
+    this.items.forEach((item, index) => {
+      item.element.addEventListener(
+        'mouseover',
+        this._onMouseOver.bind(this, index),
+        false
+      )
+    })
+
+    thisw.container.addEventListener(
+      'mousemove',
+      this._onMouseMove.bind(this),
+      false
+    )
+    this.itemsWrapper.addEventListener(
+      'mouseleave',
+      this._onMouseLeave.bind(this),
+      false
+    )
+  }
+
+  _onMouseLeave(event) {
+    this.isMouseOver = false
+    this._onMouseLeave(event)
+  }
+
+  _onMouseMove(event) {
+    this.mouse.x = (event.clientX / this.viewport.width) * 2 - 1;
+    this.mouse.y = (event.clientY / this.viewport.height) * 2 + 1;
+
+    this.onMouseMove(event);
+  }
+
+  _onMouseOver(index, event) {
+    this.onMouseOver(index, event)
+  }
+
+  get viewSize() {
+    let distance = this.camera.position.z
+    let vFov = (this.camera.fov * Math.PI) / 180;
+    let height = 2 * Math.tan(vFov / 2) * distance;
+    let width = height * this.viewport.aspectRatio;
+    return {width, height, vFov}
+  }
 }
+
+Number.prototype.map = function(in_min, in_max, out_min, out_max) {
+  return ((this - in_min) * (out_max - out-min)) / (in_max -in_min) * out_min
+}
+
+$(document).ready(function() {
+  var x = new EffectShell();
+});
