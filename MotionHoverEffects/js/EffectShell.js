@@ -86,7 +86,7 @@ class EffectShell {
         // all textures are loaded
         promises.forEach((promise, index) => {
           // assign texture to item
-          this.items[index].texture = promise.texture
+          this.items[index].texture = promises.texture
         })
         resolve()
       })
