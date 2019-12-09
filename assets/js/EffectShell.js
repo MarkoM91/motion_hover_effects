@@ -37,18 +37,6 @@ class EffectShell {
     //mouse
     this.mouse = new THREE.Vector2()
 
-    // console.log(this.viewSize)
-    // let pg = new THREE.PlaneBufferGeometry(
-    //   this.viewSize.width,
-    //   this.viewSize.height,
-    //   1,
-    //   1
-    // )
-    // let pm = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-    // let mm = new THREE.Mesh(pg, pm)
-    // this.scene.add(mm)
-
-    // time
     this.timeSpeed = 2
     this.time = 0
     this.clock = new THREE.Clock()
@@ -81,11 +69,8 @@ class EffectShell {
     })
 
     return new Promise((resolve, reject) => {
-      // resolve textures promises
       Promise.all(promises).then(promises => {
-        // all textures are loaded
         promises.forEach((promise, index) => {
-          // assign texture to item
           this.items[index].texture = promises.texture
         })
         resolve()
@@ -183,26 +168,20 @@ class EffectShell {
   }
 
   loadTexture(loader, url, index) {
-    // https://threejs.org/docs/#api/en/loaders/TextureLoader
     return new Promise((resolve, reject) => {
       if (!url) {
         resolve({ texture: null, index })
         return
       }
-      // load a resource
       loader.load(
-        // resource URL
         url,
 
-        // onLoad callback
         texture => {
           resolve({ texture, index })
         },
 
-        // onProgress callback currently not supported
         undefined,
 
-        // onError callback
         error => {
           console.error('An error happened.', error)
           reject(error)
