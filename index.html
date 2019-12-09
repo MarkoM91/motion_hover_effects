@@ -9,6 +9,7 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="assets/js/EffectShell.js"></script>
 		<script type="text/javascript" src="assets/js/Effect.js"></script>
+		<script src="https://www.promisejs.org/polyfills/promise-done-7.0.4.min.js"></script>
 		<script src="three.min.js"></script>
 		<script src="TweenLite.min.js"></script>
 		<script src="Math.js"></script>
@@ -20,18 +21,14 @@
 	  	<a class="link" href="#">
 	  		<h1 class="h1">Milano</h1>
 	  		<div class="text">Duomo</div>
-<<<<<<< HEAD
 	      <img src="assets/css/SVG/duomo.jpg" alt="Some image"/>
-=======
-	      <img src="public/SVG/duomo.jpg" alt="Some image"/>
->>>>>>> 98e77d205ccf72a660bd36aa8cad833f3fd695fb
       </a>
 	  </div>
 	</div>
 	<script>
 
-	const container = document.body
-	const itemsWrapper = document.querySelector('.grid')
+	const container = document.body;
+	const itemsWrapper = document.querySelector('.grid');
 
 		// Preload images
 		const preloadImages = () => {
@@ -43,7 +40,7 @@
 		preloadImages().then(() => {
 				// Remove the loader
 				document.body.classList.remove('loading');
-				const effect = new Effect(container, itemsWrapper, { strength: 0.25 })
+				const effect = new Effect(container, itemsWrapper, { strength: 0.25 });
 	});
 	</script>
 	</script>

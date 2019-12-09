@@ -69,8 +69,11 @@ class EffectShell {
     })
 
     return new Promise((resolve, reject) => {
+      // resolve textures promises
       Promise.all(promises).then(promises => {
+        // all textures are loaded
         promises.forEach((promise, index) => {
+          // assign texture to item
           this.items[index].texture = promises.texture
         })
         resolve()
@@ -146,7 +149,6 @@ class EffectShell {
 
   get viewSize() {
     // fit plane to screen
-    // https://gist.github.com/ayamflow/96a1f554c3f88eef2f9d0024fc42940f
 
     let distance = this.camera.position.z
     let vFov = (this.camera.fov * Math.PI) / 180
@@ -173,15 +175,20 @@ class EffectShell {
         resolve({ texture: null, index })
         return
       }
+      // load a resource
       loader.load(
+        // resource URL
         url,
 
+        // onLoad callback
         texture => {
           resolve({ texture, index })
         },
 
+        // onProgress callback currently not supported
         undefined,
 
+        // onError callback
         error => {
           console.error('An error happened.', error)
           reject(error)
