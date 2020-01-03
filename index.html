@@ -17,32 +17,31 @@
 	</head>
 	<body>
   	<div class="grid">
-	  <div class="grid-items">
-	  	<a class="link" href="#">
-	  		<h1 class="h1">Milano</h1>
-	  		<div class="text">Duomo</div>
-	      <img src="assets/css/SVG/duomo.jpg" alt="Some image"/>
-      </a>
-	  </div>
+			<div class="grid-items">
+		<a aria-label="link-1" target="_blank" rel="noopener" draggable="false" class="link w-inline-block">
+			<h1 class="h1">duomo</h1>
+			<div class="text">cathedral, milan</div>
+			<img class="content__img" src="assets/css/SVG/duomo.jpg" alt="img1" />
+		</a>
+	</div>
 	</div>
 	<script>
+	const container = document.body
+	const itemsWrapper = document.querySelector('.grid')
 
-	const container = document.body;
-	const itemsWrapper = document.querySelector('.grid');
-
-		// Preload images
-		const preloadImages = () => {
-				return new Promise((resolve, reject) => {
-						imagesLoaded(document.querySelectorAll('img'), resolve);
-				});
-		};
-		// And then..
-		preloadImages().then(() => {
-				// Remove the loader
-				document.body.classList.remove('loading');
-				const effect = new Effect(container, itemsWrapper, { strength: 0.25 });
+    // Preload images
+    const preloadImages = () => {
+        return new Promise((resolve, reject) => {
+            imagesLoaded(document.querySelectorAll('img'), resolve);
+        });
+    };
+    // And then..
+    preloadImages().then(() => {
+        // Remove the loader
+        document.body.classList.remove('loading');
+        const effect = new Effect(container, itemsWrapper, { strength: 0.25 })
 	});
 	</script>
-	</script>
+
 	</body>
 </html>

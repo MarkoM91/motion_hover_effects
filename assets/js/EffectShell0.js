@@ -54,33 +54,33 @@ class EffectShell {
   }
 
   initEffectShell() {
-    let promises = [];
+    let promises = []
 
-    this.items = this.itemsElements;
+    this.items = this.itemsElements
 
-    const THREEtextureLoader = new THREE.TextureLoader();
+    const THREEtextureLoader = new THREE.TextureLoader()
     this.items.forEach((item, index) => {
-      // create textures
-      promises.push(
-        this.loadTexture(
-          THREEtextureLoader,
-          item.img ? item.img.src : null,
-          index
-        )
-      )
-    })
+   // create textures
+   promises.push(
+     this.loadTexture(
+       THREEtextureLoader,
+       item.img ? item.img.src : null,
+       index
+     )
+   )
+  })
 
     return new Promise((resolve, reject) => {
-      // resolve textures promises
-      Promise.all(promises).then(promises => {
-        // all textures are loaded
-        promises.forEach((promise, index) => {
-          // assign texture to item
-          this.items[index].texture = promise.texture
-        })
-        resolve()
-      })
-    })
+   // resolve textures promises
+   Promise.all(promises).then(promises => {
+     // all textures are loaded
+     promises.forEach((promise, index) => {
+       // assign texture to item
+       this.items[index].texture = promise.texture
+     })
+     resolve()
+   })
+  })
   }
 
   createEventsListeners() {
